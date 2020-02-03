@@ -1,0 +1,2 @@
+class CodeBarNotValid(Exception):
+    pass

@@ -133,3 +133,5 @@ dmypy.json
 
 # Secrets file
 secrets.py
+.vscode
+__pycache__
