@@ -23,11 +23,12 @@ def send_request_to_api(message):
     bot.send_message(message.chat.id ,pretty_message, parse_mode= 'Markdown')
     image_response = requests.get(f'{response.get("image_url")}')
     image_extension = response.get("image_url")[-3:]
+    photo_path = f'{response.get("_id")}.{image_extension}'
     if image_response.status_code == 200:
-        with open(f'{response.get("_id")}.{image_extension}', 'wb') as photo:
+        with open(photo_path, 'wb') as photo:
             photo.write(image_response.content)        
         
-        with open('./temp.jpg', 'rb') as photo:
+        with open(photo_path, 'rb') as photo:
             bot.send_photo(message.chat.id, photo)
 
 bot.polling()
