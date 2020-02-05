@@ -15,10 +15,8 @@ def send_welcome(message):
 @bot.message_handler(regexp='^[-+]?[0-9]+$')
 def send_request_to_api(message):
     response = get_info_of(message)
-    if response.get('error'):
-        bot.reply_to(message, response.get('error'))
-    pretty_message = f'El nutriscore de XXXX es {response.get("nutrition_grades")}'
-    bot.reply_to(message, pretty_message)
+    pretty_message = f'El nutriscore de _{response.get("product_name")}_ es *{response.get("nutriscore_grade","UnKnonwn").upper()}*'
+    bot.reply_to(message, pretty_message, parse_mode= 'Markdown')
 
 
 
